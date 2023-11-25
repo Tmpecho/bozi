@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-
 
 namespace bozi
 {
@@ -13,52 +8,62 @@ namespace bozi
     {
         static bool _continue;
         static SerialPort _serialPort;
+
         static void Main(string[] args)
         {
-            string message;
+            var readThread = new Thread(Read);
 
-            StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
-            Thread readThread = new Thread(Read);
+            InitializeSerialPort();
 
-            _serialPort = new SerialPort("COM7");
-
-            _serialPort.BaudRate = 57600;
-            _serialPort.DataBits = 8;
-            _serialPort.StopBits = StopBits.One;
-
-            _serialPort.ReadTimeout = 500;
-            _serialPort.WriteTimeout = 500;
-
-            _serialPort.Open();
             _continue = true;
             readThread.Start();
 
             Console.WriteLine("Type QUIT to exit");
-            if (_continue)
-                {
-                message = Console.ReadLine();
 
-                if (stringComparer.Equals("quit", message))
+            ReadUserInput();
+
+            readThread.Join();
+            _serialPort.Close();
+        }
+
+        private static void InitializeSerialPort()
+        {
+            _serialPort = new SerialPort("COM7")
+            {
+                BaudRate = 57600,
+                DataBits = 8,
+                StopBits = StopBits.One,
+                ReadTimeout = 500,
+                WriteTimeout = 500
+            };
+
+            _serialPort.Open();
+        }
+
+        private static void ReadUserInput()
+        {
+            while (_continue)
+            {
+                var message = Console.ReadLine();
+
+                if (string.Equals(nameof(quit), message, StringComparison.OrdinalIgnoreCase))
                 {
                     _continue = false;
                 }
                 else
                 {
-                    _serialPort.WriteLine(
-                        String.Format("<{0}>", message));
+                    _serialPort.WriteLine($"<{message}>");
                 }
             }
-
-            readThread.Join();
-            _serialPort.Close();
         }
+
         public static void Read()
         {
             while (_continue)
             {
                 try
                 {
-                    string message = _serialPort.ReadLine();
+                    var message = _serialPort.ReadLine();
                     Console.WriteLine(message);
                 }
                 catch (TimeoutException) { }
