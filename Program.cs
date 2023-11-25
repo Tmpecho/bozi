@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace bozi
 {
     internal class Program
@@ -14,7 +15,6 @@ namespace bozi
         static SerialPort _serialPort;
         static void Main(string[] args)
         {
-
             string message;
 
             StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
@@ -34,7 +34,7 @@ namespace bozi
             readThread.Start();
 
             Console.WriteLine("Type QUIT to exit");
-            if(_continue)
+            if (_continue)
                 {
                 message = Console.ReadLine();
 
