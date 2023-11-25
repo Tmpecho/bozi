@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bozi", "bozi.csproj", "{5E7BC748-900F-4184-A639-4845FF74FC60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E7BC748-900F-4184-A639-4845FF74FC60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E7BC748-900F-4184-A639-4845FF74FC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E7BC748-900F-4184-A639-4845FF74FC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E7BC748-900F-4184-A639-4845FF74FC60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E69FA3DA-6C49-4F73-9528-67E26B995710}
+	EndGlobalSection
+EndGlobal
